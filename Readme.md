@@ -55,7 +55,7 @@ class SomeTest {
     {
         [$admin, $post] = $this->scenarios()
                             ->playout('there is an unpublished post and an admin', ['title' => 'A Post Title'])
-                            ->andGetResults();
+                            ->andReturnResults();
 
         $response = $this->actingAs($admin)->post('/posts/' . $post->id, ['status' => 'published']);
 
@@ -64,7 +64,7 @@ class SomeTest {
 
     public function test_an_admin_can_delete_a_post()
     {
-        [$admin, $post] = $this->scenarios()->playout('there is an unpublished post and an admin')->andGetResults();
+        [$admin, $post] = $this->scenarios()->playout('there is an unpublished post and an admin')->andReturnResults();
 
         $response = $this->actingAs($admin)->delete('/posts/' . $post->id);
 
@@ -77,7 +77,7 @@ class SomeTest {
         [$post, $badUser] = $this->scenarios()
                                 ->playout('we have a published post')
                                 ->andAlso('we have a regular user')
-                                ->andGetResults();
+                                ->andReturnResults();
 
         $response = $this->actingAs($badUser)->delete('/posts/' . $post->id);
 
