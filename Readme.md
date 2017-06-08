@@ -25,7 +25,7 @@ $this->scenarios()->playout('there is an admin and a user with three posts');
 
 ## Usage
 
-Assuing you want to use the trait :
+Assuming you want to use the trait :
 
 ```php
 class SomeTest {
