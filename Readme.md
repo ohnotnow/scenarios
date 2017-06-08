@@ -86,3 +86,23 @@ class SomeTest {
     }
 }
 ```
+
+## Notes
+
+If you try and 'playout' a scenario which doesn't exist, the code will throw an \InvalidArgumentException.
+
+If your scenario list only calls one 'thing' then it will be returned 'as is', otherwise it'll return an array of
+the things. Eg.
+
+```php
+$this->scenarios()->write('we have a regular user', function () {
+    return ['username' => 'jenny', 'status' => 'normal'];
+});
+$this->scenarios()->write('we have a super user', function () {
+    return ['username' => 'marlene', 'status' => 'admin'];
+});
+
+$admin = $this->scenarios()->playout('we have a super user')->andReturnResults();
+$user = $this->scenarios()->playout('we have a regular user')->andReturnResults();
+[$user, $admin] = $this->scenarios()->playout('we have a regular user')->andAlso('we have a super user')->andReturnResults();
+```
