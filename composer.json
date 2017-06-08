@@ -1,7 +1,7 @@
 {
     "name": "ohffs/scenarios",
     "description": "Easily create database helpers for given test scenarios",
-    "type": "Laravel, Testing, Database",
+    "type": "library",
     "require-dev": {
         "phpunit/phpunit": "~5.7"
     },
